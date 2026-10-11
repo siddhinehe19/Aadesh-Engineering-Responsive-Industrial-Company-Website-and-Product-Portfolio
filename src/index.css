@@ -26,12 +26,10 @@
 }
 
 html {
-  min-width: 360px;
   scroll-padding-top: 84px;
 }
 
 body {
-  min-width: 360px;
   margin: 0;
 }
 

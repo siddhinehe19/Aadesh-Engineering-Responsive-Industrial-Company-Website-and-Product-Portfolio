@@ -165,6 +165,13 @@ const exportProcess = [
   'Quality check and dispatch',
 ]
 
+const orderSteps = [
+  { title: 'Share your drawing', description: 'Send a technical drawing, sample part or clear reference to get started.' },
+  { title: 'Tell us the details', description: 'Include material, quantity, tolerances and your required delivery timeframe.' },
+  { title: 'Review the proposal', description: 'We’ll discuss feasibility, confirm specifications and share a quotation.' },
+  { title: 'Move to production', description: 'Once the requirements are agreed, we plan the order and start production.' },
+]
+
 const imagePath = (image: string) => `/images/company/${image}`
 
 function ArrowUpRight({ size = 16 }: { size?: number }) {
@@ -179,6 +186,98 @@ function ArrowRight({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="none" aria-hidden="true">
       <path d="M3.5 10h12m-5-5 5 5-5 5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+function OrderStepIcon({ step }: { step: number }) {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      {step === 1 && <><path d="M9 4.5h9l6 6v17H9z" /><path d="M18 4.5v6h6M13 16h7M13 20h7M13 24h4" /></>}
+      {step === 2 && <><path d="M5 9h22M5 16h22M5 23h22" /><circle cx="12" cy="9" r="2.5" /><circle cx="21" cy="16" r="2.5" /><circle cx="14" cy="23" r="2.5" /></>}
+      {step === 3 && <><path d="M9 4.5h9l6 6v17H9z" /><path d="M18 4.5v6h6M12.5 19l2.5 2.5 5-5" /></>}
+      {step === 4 && <><path d="M4 27V14l8-4v5l7-4v5l8-4v15z" /><path d="M19 12V5h5v4M8 20h3v3H8zM17 20h3v3h-3z" /></>}
+    </svg>
+  )
+}
+
+function OrderComponentArtwork() {
+  return (
+    <svg className="order-artwork" viewBox="0 0 700 260" role="img" aria-labelledby="order-artwork-title">
+      <title id="order-artwork-title">Illustration of precision-machined components over engineering drawing lines</title>
+      <defs>
+        <pattern id="drawing-dots" width="18" height="18" patternUnits="userSpaceOnUse">
+          <circle cx="1" cy="1" r="1" fill="#8d9879" opacity=".24" />
+        </pattern>
+        <linearGradient id="shaft-metal" x1="0" y1="0" x2="0" y2="1">
+          <stop stopColor="#f7f8f4" />
+          <stop offset=".18" stopColor="#8d9490" />
+          <stop offset=".38" stopColor="#f4f4ed" />
+          <stop offset=".62" stopColor="#737b79" />
+          <stop offset=".82" stopColor="#d9dcd5" />
+          <stop offset="1" stopColor="#59615e" />
+        </linearGradient>
+        <linearGradient id="dark-metal" x1="0" y1="0" x2="1" y2="1">
+          <stop stopColor="#f0f2ed" />
+          <stop offset=".35" stopColor="#747d79" />
+          <stop offset=".55" stopColor="#d9dcd6" />
+          <stop offset="1" stopColor="#515a57" />
+        </linearGradient>
+        <linearGradient id="face-metal" x1="0" y1="0" x2="1" y2="1">
+          <stop stopColor="#e6e9e3" />
+          <stop offset=".5" stopColor="#8a918c" />
+          <stop offset="1" stopColor="#f3f4ef" />
+        </linearGradient>
+        <filter id="component-shadow" x="-20%" y="-30%" width="150%" height="180%">
+          <feDropShadow dx="2" dy="8" stdDeviation="6" floodColor="#303831" floodOpacity=".22" />
+        </filter>
+      </defs>
+      <rect width="700" height="260" fill="url(#drawing-dots)" />
+      <g fill="none" stroke="#929c80" strokeWidth="1" opacity=".28">
+        <path d="M30 210 290 28h355M76 232 350 40M95 48h240M105 42v80M310 35v65M540 40v75" />
+        <path d="m95 45 8 4-8 4m242-7-8 4 8 4M104 110l-4-8m4 8 4-8M310 66l-4 8m4-8 4 8" />
+        <circle cx="260" cy="64" r="30" strokeDasharray="3 4" />
+      </g>
+      <g fill="#85946c" opacity=".55">
+        <rect x="38" y="35" width="8" height="8" />
+        <rect x="643" y="70" width="17" height="17" />
+        <rect x="667" y="96" width="8" height="8" />
+      </g>
+      <g filter="url(#component-shadow)" stroke="#59615d" strokeLinejoin="round">
+        <g transform="rotate(-16 280 136)">
+          <path d="M82 112h295a13 13 0 0 1 13 13v20a13 13 0 0 1-13 13H82z" fill="url(#shaft-metal)" strokeWidth="1.5" />
+          <ellipse cx="82" cy="136" rx="13" ry="24" fill="url(#dark-metal)" strokeWidth="1.5" />
+          <ellipse cx="82" cy="136" rx="6" ry="15" fill="#303835" stroke="#e0e3dc" strokeWidth="2" />
+          <path d="M48 124h34v24H48a9 9 0 0 1-9-9v-6a9 9 0 0 1 9-9Z" fill="url(#dark-metal)" strokeWidth="1.5" />
+          <path d="M135 113v46m8-46v46m135-46v46m9-46v46m54-46v46" fill="none" stroke="#58605d" strokeWidth="2" opacity=".72" />
+          <path d="M157 120h93v10h-93z" fill="#525b57" stroke="#d9dcd5" strokeWidth="1.5" />
+          <path d="M157 122h90" stroke="#f0f1eb" strokeWidth="1" opacity=".8" />
+          <ellipse cx="365" cy="136" rx="12" ry="24" fill="url(#face-metal)" strokeWidth="1.5" />
+        </g>
+        <g>
+          <path d="m423 83 39-24 48 15-38 25z" fill="#eef0e9" />
+          <path d="m423 83 49 16v60l-49-18z" fill="url(#dark-metal)" />
+          <path d="m472 99 38-25v58l-38 27z" fill="url(#shaft-metal)" />
+          <ellipse cx="472" cy="84" rx="18" ry="10" fill="#303835" stroke="#d9dcd6" strokeWidth="5" />
+          <ellipse cx="472" cy="84" rx="8" ry="4" fill="#8b938d" stroke="none" />
+          <circle cx="435" cy="110" r="5" fill="#39413d" stroke="#e8eae5" strokeWidth="2" />
+          <circle cx="486" cy="110" r="5" fill="#39413d" stroke="#e8eae5" strokeWidth="2" />
+        </g>
+        <g>
+          <path d="m398 190 27-16 40 13-28 18z" fill="#f0f2ec" />
+          <path d="m398 190 39 15v30l-39-14z" fill="url(#dark-metal)" />
+          <path d="m437 205 28-18v28l-28 20z" fill="url(#shaft-metal)" />
+          <ellipse cx="418" cy="197" rx="19" ry="11" fill="url(#face-metal)" />
+          <ellipse cx="418" cy="197" rx="9" ry="5" fill="#343b38" stroke="#f2f3ed" strokeWidth="2" />
+        </g>
+        <g>
+          <path d="m578 144 11-7 10 4 5-11 12 1 4 11 11 3 1 12 10 7-4 11 6 10-8 9 1 12-12 3-5 10-12-3-9 8-10-7-11 4-7-10-12-1-2-12-10-6 4-12-6-10 8-9-1-12 11-4z" fill="url(#dark-metal)" />
+          <ellipse cx="607" cy="181" rx="35" ry="27" fill="url(#face-metal)" />
+          <ellipse cx="607" cy="181" rx="20" ry="15" fill="#4c5551" stroke="#e7eae3" strokeWidth="3" />
+          <ellipse cx="607" cy="181" rx="10" ry="7" fill="#262e2a" stroke="#c4c9c0" strokeWidth="2" />
+          <path d="M579 178c13-15 42-19 57-5" fill="none" stroke="#fff" strokeWidth="2" opacity=".65" />
+        </g>
+      </g>
     </svg>
   )
 }
@@ -652,20 +751,30 @@ function HomePage({
 
         <section className="order-section" id="order">
           <div className="container">
-            <div className="section-heading order-heading">
-              <div>
-                <div className="eyebrow"><span className="eyebrow-line" /> SIMPLE TO GET STARTED</div>
+            <div className="order-top">
+              <div className="order-heading">
+                <div className="eyebrow"><span className="eyebrow-line" /> HOW WE WORK</div>
                 <h2>Your requirement.<br /><em>Our next job.</em></h2>
+                <p>Share your drawing or requirement and let’s turn it into a precision component.</p>
               </div>
-              <p>Have a part in mind? Here’s what helps us understand your requirement and get the conversation moving.</p>
+              <div className="order-visual" aria-label="Examples of precision-machined components">
+                <OrderComponentArtwork />
+              </div>
             </div>
             <div className="order-steps">
-              <article><span>01</span><div><h3>Share your drawing</h3><p>Send a technical drawing, sample part or clear reference to get started.</p></div></article>
-              <article><span>02</span><div><h3>Tell us the details</h3><p>Include material, quantity, tolerances and your required delivery timeframe.</p></div></article>
-              <article><span>03</span><div><h3>Review the proposal</h3><p>We’ll discuss feasibility, confirm specifications and share a quotation.</p></div></article>
-              <article><span>04</span><div><h3>Move to production</h3><p>Once the requirements are agreed, we plan the order with you.</p></div></article>
+              {orderSteps.map((item, index) => (
+                <article key={item.title}>
+                  <div className="order-step-top"><span>{String(index + 1).padStart(2, '0')}</span><div className="order-step-icon"><OrderStepIcon step={index + 1} /></div></div>
+                  <div><h3>{item.title}</h3><p>{item.description}</p></div>
+                  <div className="order-step-bottom"><span>STEP {String(index + 1).padStart(2, '0')}</span><span className="order-step-arrow"><ArrowRight size={15} /></span></div>
+                </article>
+              ))}
             </div>
-            <div className="order-footnote"><span>GOOD TO KNOW</span><p>Every part is made to order. Price, specification and delivery timeline are confirmed by our team after reviewing your enquiry.</p><a className="text-link" href="#contact">Start an enquiry <ArrowRight /></a></div>
+            <div className="order-footnote">
+              <span className="order-footnote-label">GOOD TO KNOW</span>
+              <p>Every part is made to order. Price, specification and delivery timeline are confirmed by our team after reviewing your enquiry.</p>
+              <a className="button button-accent order-enquire" href={quickEnquiry('Custom part')} target="_blank" rel="noreferrer"><WhatsAppMark /> ENQUIRE NOW <ArrowRight /></a>
+            </div>
           </div>
         </section>
 
@@ -764,97 +873,123 @@ function HomePage({
 }
 
 function ExportPage({ navigateHome }: { navigateHome: () => void }) {
+  function navigateToHomeSection(sectionId: string) {
+    navigateHome()
+    window.setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+    }, 50)
+  }
+
   return (
-    <div className="export-page-shell">
-      <header className="luxury-header">
-        <div className="container luxury-header-inner">
+    <div className="global-supply-page">
+      <div className="topline">
+        <div className="container topline-inner">
+          <span><span className="status-dot" /> ISO 9001:2015 certified · Established 2007</span>
+          <a href={`mailto:${company.email}`}>{company.email}<ArrowUpRight size={13} /></a>
+        </div>
+      </div>
+      <header className="site-header global-supply-header">
+        <div className="container header-inner">
           <a className="brand" href="#/" onClick={(event) => { event.preventDefault(); navigateHome() }} aria-label="Return to Aadesh Engineering home">
             <span className="brand-mark"><img src={imagePath('image2.jpeg')} alt="Aadesh Engineering logo" /></span>
             <span className="brand-copy"><strong>AADESH</strong><small>ENGINEERING</small></span>
           </a>
-          <nav className="luxury-nav" aria-label="Export navigation">
+          <nav className="global-supply-nav" aria-label="Global supply navigation">
             <a href="#/">Home</a>
-            <a href="#/export">Global Supply</a>
-            <a href="#contact">Contact</a>
+            <a href="#/export" aria-current="page">Global Supply</a>
+            <a href="#machines" onClick={(event) => { event.preventDefault(); navigateToHomeSection('machines') }}>Capabilities</a>
+            <a href="#contact" onClick={(event) => { event.preventDefault(); navigateToHomeSection('contact') }}>Contact</a>
           </nav>
-          <button type="button" className="button button-accent subtle-button" onClick={navigateHome}>Back to home</button>
+          <a className="button button-accent global-supply-nav-cta" href="#contact" onClick={(event) => { event.preventDefault(); navigateToHomeSection('contact') }}>Discuss a requirement <ArrowRight /></a>
         </div>
       </header>
 
-      <main className="export-page">
-        <section className="luxury-hero">
-          <div className="luxury-hero-content container">
-            <div className="luxury-hero-copy">
-              <div className="eyebrow light-eyebrow"><span className="eyebrow-line" /> EXPORT &amp; GLOBAL SUPPLY CHAIN</div>
-              <h1>International precision.<br /><em>Built for trust.</em></h1>
-              <p>Aadesh Engineering delivers precision-machined automotive components with a disciplined quality focus, responsive communication and production capability that supports long-term supplier partnerships.</p>
-              <div className="luxury-actions">
-                <a className="button button-accent" href="#contact">Request a quotation <ArrowRight /></a>
-                <a className="text-link light-link" href="#/">View the company profile <ArrowUpRight /></a>
+      <main className="global-supply-main">
+        <section className="global-supply-hero">
+          <div className="container global-supply-hero-grid">
+            <div className="global-supply-hero-copy">
+              <div className="eyebrow"><span className="eyebrow-line" /> GLOBAL SUPPLY · PUNE, INDIA</div>
+              <h1>Precision components.<br /><em>Partnership built on trust.</em></h1>
+              <p>A Pune-based manufacturing partner for precision-machined automotive components. Share your drawing or sample and we’ll review the details with you before confirming a quotation.</p>
+              <div className="global-supply-actions">
+                <a className="button button-accent" href="#contact" onClick={(event) => { event.preventDefault(); navigateToHomeSection('contact') }}>Discuss your requirement <ArrowRight /></a>
+                <a className="global-supply-text-link" href="#/">Explore Aadesh Engineering <ArrowUpRight /></a>
               </div>
             </div>
-            <div className="luxury-hero-panel">
-              <div className="panel-box panel-box-main">
-                <span>Capability</span>
-                <strong>OEM / Tier-1 support</strong>
+            <div className="global-supply-art">
+              <OrderComponentArtwork />
+              <span className="global-supply-art-label"><i /> DRAWING-LED · MADE TO ORDER</span>
+              <div className="global-supply-art-note"><span>MANUFACTURING BASE</span><strong>Talawade, Pune</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="global-supply-stats container" aria-label="Aadesh Engineering at a glance">
+          <article><span>01 / FACILITY</span><strong>9,200 <small>sq. ft.</small></strong><p>Manufacturing area</p></article>
+          <article><span>02 / OUR TEAM</span><strong>103</strong><p>Employees</p></article>
+          <article><span>03 / QUALITY</span><strong>ISO <small>9001:2015</small></strong><p>Certified quality management system</p></article>
+          <article><span>04 / EXPERIENCE</span><strong>Since 2007</strong><p>Established in Pune, India</p></article>
+        </section>
+
+        <section className="global-supply-capabilities">
+          <div className="container global-supply-capabilities-grid">
+            <div className="global-supply-capabilities-copy">
+              <div className="eyebrow"><span className="eyebrow-line" /> A PRACTICAL MANUFACTURING PARTNER</div>
+              <h2>Clear requirements.<br /><em>Consistent execution.</em></h2>
+              <p>We make components to customer drawings and samples. Requirements are reviewed with attention to material, quantity, tolerances, inspection and delivery expectations.</p>
+              <a className="global-supply-inline-link" href="#contact" onClick={(event) => { event.preventDefault(); navigateToHomeSection('contact') }}>Talk through a part <ArrowRight /></a>
+            </div>
+            <div className="global-supply-feature-list">
+              {exportHighlights.map((item, index) => (
+                <article key={item.title}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <div><h3>{item.title}</h3><p>{item.text}</p></div>
+                  <ArrowUpRight size={17} />
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="global-supply-process">
+          <div className="container">
+            <div className="global-supply-process-heading">
+              <div>
+                <div className="eyebrow"><span className="eyebrow-line" /> A STRAIGHTFORWARD PROCESS</div>
+                <h2>From first drawing<br /><em>to finished order.</em></h2>
               </div>
-              <div className="panel-box panel-box-small">
-                <span>Plant</span>
-                <strong>Pune, India</strong>
-              </div>
+              <p>We align on the part requirements and production details before moving into manufacturing.</p>
+            </div>
+            <div className="global-supply-process-grid">
+              {exportProcess.map((step, index) => (
+                <article key={step}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{step}</h3>
+                  <i aria-hidden="true"><ArrowRight size={15} /></i>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
-        <section className="luxury-stats container">
-          <div className="stat-card"><strong>9200</strong><span>Sq. Ft. manufacturing area</span></div>
-          <div className="stat-card"><strong>103</strong><span>Skilled workforce</span></div>
-          <div className="stat-card"><strong>ISO</strong><span>9001:2015 certified</span></div>
-        </section>
-
-        <section className="container luxury-grid">
-          <div className="luxury-card feature-card">
-            <div className="eyebrow"><span className="eyebrow-line" /> WHY GLOBAL CUSTOMERS CHOOSE US</div>
-            <h2>Consistent quality,<br /><em>ready for supply chains.</em></h2>
-            <p>Our manufacturing model is built around repeatability, quality control and customer alignment. We work from part drawings, reference samples and specification sheets to meet functional requirements and delivery expectations.</p>
-          </div>
-          <div className="luxury-card list-card">
-            <ul>
-              <li>Precision machining for automotive and engineering component requirements</li>
-              <li>Quality-driven process discipline with inspection facilities</li>
-              <li>Production approach tailored to drawing-led and sample-led requirements</li>
-              <li>Focused on supply continuity, responsiveness and long-term partnership</li>
-            </ul>
-          </div>
-        </section>
-
-        <section className="container luxury-process">
-          <div className="section-heading process-heading">
-            <div>
-              <div className="eyebrow"><span className="eyebrow-line" /> HOW WE WORK</div>
-              <h2>From requirement to dispatch.</h2>
+        <section className="global-supply-contact">
+          <div className="container global-supply-contact-panel">
+            <div className="global-supply-contact-copy">
+              <div className="eyebrow"><span className="eyebrow-line" /> START A CONVERSATION</div>
+              <h2>Have a component<br /><em>requirement?</em></h2>
+              <p>Send a drawing, sample details, material, quantity and target timing. Our team will review the information and get back to you.</p>
             </div>
-          </div>
-          <div className="process-grid">
-            {exportProcess.map((step, index) => (
-              <article key={step} className="process-card">
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{step}</h3>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="container luxury-cta">
-          <div className="cta-panel">
-            <div>
-              <div className="eyebrow"><span className="eyebrow-line" /> PARTNERSHIP</div>
-              <h2>Let’s build the next requirement together.</h2>
+            <div className="global-supply-contact-actions">
+              <a className="button button-accent" href={`mailto:${company.email}?subject=${encodeURIComponent('Precision component enquiry')}`}>Email our team <ArrowUpRight /></a>
+              <a className="global-supply-phone" href={`tel:${company.phoneLink}`}>{company.phone}</a>
+              <a className="global-supply-home-link" href="#/" onClick={(event) => { event.preventDefault(); navigateHome() }}>View company profile <ArrowRight /></a>
             </div>
-            <a className="button button-accent" href="#contact">Start an enquiry <ArrowUpRight /></a>
           </div>
         </section>
       </main>
+      <footer className="global-supply-footer">
+        <div className="container"><span>© {currentYear} Aadesh Engineering · Talawade, Pune, India</span><a href="#/">Aadesh Engineering <ArrowUpRight size={13} /></a></div>
+      </footer>
     </div>
   )
 }
